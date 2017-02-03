@@ -13,16 +13,11 @@ import java.util.*;
 		public Tree() {
 			root = null;
 		}
-		public void rev(){
-			reverse(root);
-			printTree(root);
-		}
 		public void reverse( Tree root ){
 			if( root == null ){
 				return;
 			}
 			Tree temp = root.right;
-			//System.out.println(temp.val);
 			root.right = root.left;
 			root.left = temp;
 			reverse( root.left);
@@ -56,16 +51,15 @@ import java.util.*;
 		}
 		public static void main( String[] args ){
 			Tree tree = new Tree();
-			int[] nums = {2,1,3};
+			int[] nums = {5,3,7,1,2,6,9,4,8};
 			for( int i=0; i<nums.length; i++){
 				tree.insert( nums[i]);
 			}
 			tree.print();
 			System.out.println("    ");
 			System.out.println("============================");
-			tree.rev();
-//			tree.root = tree.reverse(tree.root);
-//			tree.print();
+			tree.reverse(tree.root);
+			tree.print();
 		}
 	}
 	
