@@ -13,15 +13,24 @@ import java.util.*;
 		public Tree() {
 			root = null;
 		}
-		public void reverse( Tree root ){
+		public void topView(){
 			if( root == null ){
 				return;
 			}
-			Tree temp = root.right;
-			root.right = root.left;
-			root.left = temp;
-			reverse( root.left);
-			reverse( root.right);
+			Map<Integer, Tree> map = new HashMap<>();
+			topView( root, map, 0);
+			for( Tree node: map.values() ){
+				System.out.print( node.val+"  ");
+			}
+		}
+		private void topView( Tree root, Map<Integer, Tree> map, int level ){
+			if( root == null ){
+				return;
+			}
+			if( !map.containsKey(level) ){
+				map.put(level, root);}
+			topView( root.left, map, level-1);
+			topView( root.right, map,level+1);
 		}
 		public void print(){
 			printTree(root);
@@ -58,8 +67,53 @@ import java.util.*;
 			tree.print();
 			System.out.println("    ");
 			System.out.println("============================");
-			tree.reverse(tree.root);
+			tree.topView();
+			System.out.println("    ");
+			System.out.println("============================");
+//			================================================
+			tree = new Tree();
+			nums = new int[]{5};
+			for( int i=0; i<nums.length; i++){
+				tree.insert( nums[i]);
+			}
 			tree.print();
+			System.out.println("    ");
+			System.out.println("============================");
+			tree.topView();
+			System.out.println("    ");
+			System.out.println("============================");
+//			================================================
+			tree = new Tree();
+			nums = new int[]{1,2,3};
+			for( int i=0; i<nums.length; i++){
+				tree.insert( nums[i]);
+			}
+			tree.print();
+			System.out.println("    ");
+			System.out.println("============================");
+			tree.topView();
+			System.out.println("    ");
+			System.out.println("============================");
+//			================================================
+			tree = new Tree();
+			tree.print();
+			System.out.println("    ");
+			System.out.println("============================");
+			tree.topView();
+			System.out.println("    ");
+			System.out.println("============================");
+//			================================================
+			tree = new Tree();
+			nums = new int[]{3,2,1};
+			for( int i=0; i<nums.length; i++){
+				tree.insert( nums[i]);
+			}
+			tree.print();
+			System.out.println("    ");
+			System.out.println("============================");
+			tree.topView();
+			System.out.println("    ");
+			System.out.println("============================");
 		}
 	}
 	
